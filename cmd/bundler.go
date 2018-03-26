@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"strconv"
 )
 
 var (
@@ -24,13 +25,7 @@ func main() {
 	fmt.Fprintf(b, "package %s\n\n", *pkg)
 	fmt.Fprintf(b, "// Web3CODE is a binary representation of web3js mini.\n")
 	fmt.Fprintf(b, "var Web3CODE = []byte{")
-	last := len(data) - 1
-	for i, byt := range data {
-		fmt.Fprint(b, byt)
-		if i != last {
-			fmt.Fprint(b, ", ")
-		}
-	}
+	fmt.Fprintf(b, strconv.Quote(string(data)))
 	fmt.Fprintf(b, "}\n")
 	if *dst == "" {
 		io.Copy(os.Stdout, b)
