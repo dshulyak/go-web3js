@@ -24,9 +24,9 @@ func main() {
 	fmt.Fprintf(b, "// Code is generated. DO NOT EDIT.\n\n")
 	fmt.Fprintf(b, "package %s\n\n", *pkg)
 	fmt.Fprintf(b, "// Web3CODE is a binary representation of web3js mini.\n")
-	fmt.Fprintf(b, "var Web3CODE = []byte{")
+	fmt.Fprintf(b, "var Web3CODE = []byte(")
 	fmt.Fprintf(b, strconv.Quote(string(data)))
-	fmt.Fprintf(b, "}\n")
+	fmt.Fprintf(b, ")\n")
 	if *dst == "" {
 		io.Copy(os.Stdout, b)
 	} else {
